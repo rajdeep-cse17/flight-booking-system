@@ -36982,7 +36982,7 @@ For the fastest setup, use our automated scripts:
 ## Getting Started
 
 ### Prerequisites
-- Java 11+
+- Java 17+
 - Maven 3.6+
 - Docker (for Redis)
 - AWS CLI configured
