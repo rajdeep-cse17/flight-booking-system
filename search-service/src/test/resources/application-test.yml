@@ -1,0 +1,26 @@
+spring:
+  profiles: test
+  application:
+    name: search-service
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration
+      - org.springframework.boot.autoconfigure.data.redis.RedisRepositoriesAutoConfiguration
+  redis:
+    enabled: false
+
+server:
+  port: 0  # Random port for testing
+
+# Use in-memory configuration for testing
+logging:
+  level:
+    com.flightbooking: INFO
+    org.springframework: INFO
+  pattern:
+    console: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+
+# Disable AWS configuration for basic tests
+aws:
+  dynamodb:
+    enabled: false 

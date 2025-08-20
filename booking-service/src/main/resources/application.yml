@@ -1,0 +1,37 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: booking-service
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+      - org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration
+
+# External Service URLs
+payment:
+  service:
+    url: http://localhost:8083
+    endpoint: /api/payment/pay
+
+user:
+  service:
+    url: http://localhost:8081
+    endpoint: /api/user/update-booking-value
+
+# AWS Configuration
+aws:
+  access:
+    key:
+      id: ${AWS_ACCESS_KEY_ID:your-access-key-id}
+  secret:
+    access:
+      key: ${AWS_SECRET_ACCESS_KEY:your-secret-access-key}
+  region: us-east-1
+  dynamodb:
+    endpoint: http://localhost:8000  # Local DynamoDB for development
+
+logging:
+  level:
+    com.flightbooking.bookingservice: DEBUG 

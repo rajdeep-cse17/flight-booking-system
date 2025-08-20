@@ -1,0 +1,40 @@
+server:
+  port: 8082
+
+aws:
+  region: us-east-1
+  access:
+    key:
+      id: local
+  secret:
+    access:
+      key: local
+  dynamodb:
+    endpoint: http://localhost:8000
+
+# External Service URLs (mock endpoints for integration testing)
+payment:
+  service:
+    url: http://localhost:8083
+    endpoint: /api/payment/pay
+
+user:
+  service:
+    url: http://localhost:8081
+    endpoint: /api/user/update-booking-value
+
+# Disable JPA for integration testing (we're using DynamoDB)
+spring:
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+      - org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration
+      - org.springframework.boot.autoconfigure.data.jpa.JpaRepositoriesAutoConfiguration
+      - org.springframework.boot.autoconfigure.transaction.jta.JtaAutoConfiguration
+      - org.springframework.boot.autoconfigure.data.dynamodb.DynamoDBDataAutoConfiguration
+      - org.springframework.boot.autoconfigure.data.dynamodb.DynamoDBRepositoriesAutoConfiguration
+
+logging:
+  level:
+    com.flightbooking.bookingservice: DEBUG
+    com.amazonaws: DEBUG 
